@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
+  <packaging>jar</packaging>
+  <groupId>org.webjars</groupId>
+  <artifactId>foundation-custom-build</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>Foundation</name>
+  <description>WebJar for Foundation allowing you to specify custom settings</description>
+  <url>http://webjars.org</url>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://github.com/zurb/foundation/blob/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>http://github.com/webjars/foundation</url>
+    <connection>scm:git:https://github.com/webjars/foundation.git</connection>
+    <developerConnection>scm:git:https://github.com/webjars/foundation.git</developerConnection>
+    <tag>foundation-5.5.3</tag>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>matthew.dedetrich</id>
+      <name>Matthew de Detrich</name>
+      <email>mdedetrich@gmail.com</email>
+    </developer>
+    <developer>
+      <id>jamesward</id>
+      <name>James Ward</name>
+      <email>james@jamesward.org</email>
+    </developer>
+    <developer>
+      <id>zackarychapple</id>
+      <name>Zakary Chapple</name>
+      <email>zackarychapple30@gmail.com</email>
+    </developer>
+    <developer>
+      <id>dhruvbhatia</id>
+      <name>Dhruv Bhatia</name>
+      <email>dhruv@dhruvbhatia.com</email>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>modernizr</artifactId>
+      <version>2.8.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>fastclick</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jQuery-Autocomplete</artifactId>
+      <version>1.2.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery-cookie</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>Placeholders.js</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>normalize.css</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <upstreamVersion>5.5.3</upstreamVersion>
+    <upstreamTag>5.5.3</upstreamTag>
+    <sourceUrl>https://github.com/zurb/foundation/archive</sourceUrl>
+    <releaseUrl>http://foundation.zurb.com/cdn/releases</releaseUrl>
+    <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
+    <requirejs>{
+      "paths": {
+          "foundation-all": "js/foundation.min",
+          "foundation-core": "js/foundation/foundation",
+          "foundation-abide": "js/foundation/foundation.abide",
+          "foundation-accordion": "js/foundation/foundation.accordion",
+          "foundation-alert": "js/foundation/foundation.alert",
+          "foundation-clearing": "js/foundation/foundation.clearing",
+          "foundation-dropdown": "js/foundation/foundation.dropdown",
+          "foundation-equalizer": "js/foundation/foundation.equalizer",
+          "foundation-interchange": "js/foundation/foundation.interchange",
+          "foundation-joyride": "js/foundation/foundation.joyride",
+          "foundation-magellan": "js/foundation/foundation.magellan",
+          "foundation-offcanvas": "js/foundation/foundation.offcanvas",
+          "foundation-orbit": "js/foundation/foundation.orbit",
+          "foundation-reveal": "js/foundation/foundation.reveal",
+          "foundation-slider": "js/foundation/foundation.slider",
+          "foundation-tab": "js/foundation/foundation.tab",
+          "foundation-tooltip": "js/foundation/foundation.tooltip",
+          "foundation-topbar": "js/foundation/foundation.topbar"
+      },
+      "shim": {
+          "foundation-all": ["jquery","fastclick"],
+          "foundation-core": ["jquery","fastclick"],
+          "foundation-abide": ["foundation-core"],
+          "foundation-accordion": ["foundation-core"],
+          "foundation-alert": ["foundation-core"],
+          "foundation-clearing": ["foundation-core"],
+          "foundation-dropdown": ["foundation-core"],
+          "foundation-equalizer": ["foundation-core"],
+          "foundation-interchange": ["foundation-core"],
+          "foundation-joyride": ["foundation-core","jquery-cookie"],
+          "foundation-magellan": ["foundation-core"],
+          "foundation-offcanvas": ["foundation-core"],
+          "foundation-orbit": ["foundation-core"],
+          "foundation-reveal": ["foundation-core"],
+          "foundation-slider": ["foundation-core"],
+          "foundation-tab": ["foundation-core"],
+          "foundation-tooltip": ["foundation-core"],
+          "foundation-topbar": ["foundation-core"]
+      }
+    }</requirejs>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>wagon-maven-plugin</artifactId>
+        <version>1.0-beta-4</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <id>source-files</id>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <url>${sourceUrl}</url>
+              <fromFile>v${upstreamTag}.zip</fromFile>
+              <toFile>${project.build.directory}/${project.artifactId}-${upstreamVersion}-source.zip</toFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <id>release-files</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <echo message="unzip archive"/>
+                <unzip dest="${project.build.directory}/foundation" src="${project.build.directory}/${project.artifactId}-${upstreamVersion}-source.zip"/>
+                <echo message="deleting default settings"/>
+                <delete file="${project.build.directory}/foundation/foundation-sites-${upstreamVersion}/scss/foundation.scss"/>
+                <delete file="${project.build.directory}/foundation/foundation-sites-${upstreamVersion}/scss/normalize.scss"/>
+                <delete file="${project.build.directory}/foundation/foundation-sites-${upstreamVersion}/scss/foundation/_settings.scss"/>
+                <echo message="copying custom settings"/>
+                <copy file="${basedir}/input/foundation.scss" toFile="${project.build.directory}/foundation/foundation-sites-${upstreamVersion}/scss/foundation.scss"/>
+                <copy file="${basedir}/input/_settings.scss" toFile="${project.build.directory}/foundation/foundation-sites-${upstreamVersion}/scss/_settings.scss"/>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <phase>process-resources</phase>
+            <id>copy-resources</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <echo message="copying resources"/>
+                <copy todir="${destDir}">
+                  <fileset dir="${project.build.directory}/foundation/foundation-sites-${upstreamTag}" includes="js/,css/,scss/,img/" excludes="js/vendor/,scss/normalize.scss"/>
+                </copy>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <id>replace-version</id>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <basedir>${project.build.directory}/foundation/foundation-sites-${upstreamTag}/</basedir>
+          <includes>
+            <include>scss/**/*.scss</include>
+            <include>js/**/*.js</include>
+          </includes>
+          <regex>true</regex>
+          <replacements>
+            <replacement>
+              <token>\{\{VERSION}}</token>
+              <value>${upstreamVersion}</value>
+            </replacement>
+          </replacements>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.warmuuh</groupId>
+        <artifactId>libsass-maven-plugin</artifactId>
+        <version>0.1.7-libsass_3.2.4</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <outputPath>${destDir}/css/</outputPath>
+          <inputPath>${project.build.directory}/foundation/foundation-sites-${upstreamVersion}/scss/</inputPath>
+          <generateSourceMap>false</generateSourceMap>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>yuicompressor-maven-plugin</artifactId>
+        <version>1.5.1</version>
+        <configuration>
+          <preProcessAggregates>true</preProcessAggregates>
+          <suffix>.min</suffix>
+          <aggregations>
+            <aggregation>
+              <insertNewLine>true</insertNewLine>
+              <output>${destDir}/js/foundation.js</output>
+              <inputDir>${destDir}/js/foundation/</inputDir>
+              <includes>
+                <include>**/*.js</include>
+                <include>**/*.css</include>
+              </includes>
+            </aggregation>
+          </aggregations>
+          <jswarn>false</jswarn>
+          <nosuffix>false</nosuffix>
+          <sourceDirectory>${basedir}/target</sourceDirectory>
+          <outputDirectory>${basedir}/target</outputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>compress_js_css</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>compress</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.1</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.5</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>sonatype-nexus-staging</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

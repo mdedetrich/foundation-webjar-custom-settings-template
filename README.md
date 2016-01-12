@@ -1,6 +1,6 @@
 # Foundation Webjar Custom Settings Template
 
-This is a Foundation Webjar Template based on https://github.com/webjars/foundation, however it has the ability to to customize the foundation `_settings.scss`/`foundation.scss` file to produce a customized `foundation.css`.
+This is a Foundation Webjar Template based on https://github.com/webjars/foundation, however it has the ability to customize the foundation `_settings.scss`/`foundation.scss` file to produce a customized `foundation.css`.
 
 Due to this, unlike the original Foundation Webjar this uses various maven plugins to build the package rather than just repacking assets.
 

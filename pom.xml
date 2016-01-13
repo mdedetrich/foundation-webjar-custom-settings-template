@@ -299,7 +299,6 @@
                 <exclude>css/*.min.css</exclude>
               </excludes>
             </configuration>
-
             <id>compress-assets</id>
             <phase>process-resources</phase>
             <goals>

@@ -260,53 +260,46 @@
         <groupId>net.alchim31.maven</groupId>
         <artifactId>yuicompressor-maven-plugin</artifactId>
         <version>1.5.1</version>
-        <configuration>
-          <preProcessAggregates>true</preProcessAggregates>
-          <aggregations>
-            <aggregation>
-              <insertNewLine>true</insertNewLine>
-              <output>${destDir}/js/foundation.js</output>
-              <inputDir>${destDir}/js/foundation/</inputDir>
-              <includes>
-                <include>**/*.js</include>
-              </includes>
-            </aggregation>
-          </aggregations>
-          <jswarn>false</jswarn>
-          <nosuffix>false</nosuffix>
-        </configuration>
         <executions>
           <execution>
+            <configuration>
+              <preProcessAggregates>true</preProcessAggregates>
+              <aggregations>
+                <aggregation>
+                  <insertNewLine>true</insertNewLine>
+                  <output>${destDir}/js/foundation.js</output>
+                  <inputDir>${destDir}/js/foundation/</inputDir>
+                  <includes>
+                    <include>**/*.js</include>
+                  </includes>
+                </aggregation>
+              </aggregations>
+              <jswarn>false</jswarn>
+              <nosuffix>false</nosuffix>
+            </configuration>
             <id>aggregate-js</id>
             <phase>process-resources</phase>
             <goals>
               <goal>compress</goal>
             </goals>
           </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>yuicompressor-maven-plugin</artifactId>
-        <version>1.5.1</version>
-        <configuration>
-          <suffix>.min</suffix>
-          <jswarn>false</jswarn>
-          <nosuffix>false</nosuffix>
-          <sourceDirectory>${destDir}</sourceDirectory>
-          <outputDirectory>${destDir}</outputDirectory>
-          <includes>
-            <include>js/*.js</include>
-            <include>css/*.css</include>
-          </includes>
-          <excludes>
-            <exclude>js/*.min.js</exclude>
-            <exclude>css/*.min.css</exclude>
-          </excludes>
-        </configuration>
-        <executions>
           <execution>
+            <configuration>
+              <suffix>.min</suffix>
+              <jswarn>false</jswarn>
+              <nosuffix>false</nosuffix>
+              <sourceDirectory>${destDir}</sourceDirectory>
+              <outputDirectory>${destDir}</outputDirectory>
+              <includes>
+                <include>js/*.js</include>
+                <include>css/*.css</include>
+              </includes>
+              <excludes>
+                <exclude>js/*.min.js</exclude>
+                <exclude>css/*.min.css</exclude>
+              </excludes>
+            </configuration>
+
             <id>compress-assets</id>
             <phase>process-resources</phase>
             <goals>

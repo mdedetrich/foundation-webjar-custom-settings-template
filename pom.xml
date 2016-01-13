@@ -262,7 +262,6 @@
         <version>1.5.1</version>
         <configuration>
           <preProcessAggregates>true</preProcessAggregates>
-          <suffix>.min</suffix>
           <aggregations>
             <aggregation>
               <insertNewLine>true</insertNewLine>
@@ -270,18 +269,45 @@
               <inputDir>${destDir}/js/foundation/</inputDir>
               <includes>
                 <include>**/*.js</include>
-                <include>**/*.css</include>
               </includes>
             </aggregation>
           </aggregations>
           <jswarn>false</jswarn>
           <nosuffix>false</nosuffix>
-          <sourceDirectory>${basedir}/target</sourceDirectory>
-          <outputDirectory>${basedir}/target</outputDirectory>
         </configuration>
         <executions>
           <execution>
-            <id>compress_js_css</id>
+            <id>aggregate-js</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>compress</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>yuicompressor-maven-plugin</artifactId>
+        <version>1.5.1</version>
+        <configuration>
+          <suffix>.min</suffix>
+          <jswarn>false</jswarn>
+          <nosuffix>false</nosuffix>
+          <sourceDirectory>${destDir}</sourceDirectory>
+          <outputDirectory>${destDir}</outputDirectory>
+          <includes>
+            <include>js/*.js</include>
+            <include>css/*.css</include>
+          </includes>
+          <excludes>
+            <exclude>js/*.min.js</exclude>
+            <exclude>css/*.min.css</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>compress-assets</id>
             <phase>process-resources</phase>
             <goals>
               <goal>compress</goal>
